@@ -9,7 +9,7 @@ using System.IO;
 
 namespace ConsoleUI.Library.Api
 {
-    public  class RegistrationEndpoint : IRegistrationEndpoint
+    public class RegistrationEndpoint : IRegistrationEndpoint
     {
         private readonly IApiHelper _apiHelper;
         public RegistrationEndpoint(IApiHelper apiHelper)
@@ -20,8 +20,8 @@ namespace ConsoleUI.Library.Api
         public async Task PostRegistrationNumber(List<RegistrationNumberModel> registrationNumbers)
         {
             var jsonObject = await GetJson(registrationNumbers);
-
             var stringContent = new StringContent(jsonObject);
+
 
 
             using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsync("AsynchWebService/api/v6/ws/tva", stringContent))
@@ -29,6 +29,7 @@ namespace ConsoleUI.Library.Api
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     Console.WriteLine(responseMessage.ReasonPhrase);
+                    Console.WriteLine(await responseMessage.Content.ReadAsStringAsync());
                 }
                 else
                 {
