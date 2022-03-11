@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Configuration;
+using System.Net.Http.Headers;
 
 namespace ConsoleUI.Library.Api
 {
@@ -33,7 +34,7 @@ namespace ConsoleUI.Library.Api
             };
 
             _apiClient.DefaultRequestHeaders.Accept.Clear();
-            _apiClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));            
+            _apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }
 }

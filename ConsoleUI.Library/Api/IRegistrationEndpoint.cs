@@ -6,6 +6,6 @@ namespace ConsoleUI.Library.Api
 {
     public interface IRegistrationEndpoint
     {
-        Task PostRegistrationNumber(List<RegistrationNumberModel> registrationNumbers);
+        Task<SuccessfulResponseModel> PostRegistrationNumber(List<RegistrationNumberModel> registrationNumbers);
     }
 }

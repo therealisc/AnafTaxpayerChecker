@@ -8,7 +8,7 @@ namespace ConsoleUI.Library.Models
     public class TaxpayerModel
     {
         [JsonPropertyName("cui")]
-        public string RegistrationNumber { get; set; }
+        public int RegistrationNumber { get; set; }
 
         [JsonPropertyName("data")]
         public DateTime Date { get; set; }

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace ConsoleUI.Library.Models
 {
-    public class RegistrationNumberModel
+    public class RegistrationNumberModel : IRegistrationNumberModel
     {
         [JsonPropertyName("cui")]
         public int RegistrationNumber { get; set; }
