@@ -18,12 +18,15 @@ namespace ConsoleUI.Library.Api
 
         public async Task<TaxpayersModel> GetTaxpayer(string correlationId)
         {
-            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.GetAsync($"AsynchWebService/api/v6/ws/tva?id={correlationId}"))
+            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.GetAsync($"AsynchWebService/api/v8/ws/tva?id={correlationId}"))
             {
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    var response = JsonSerializer.Deserialize<TaxpayersModel>(
-                        await responseMessage.Content.ReadAsStringAsync());
+		    var jsonContent = await responseMessage.Content.ReadAsStringAsync();
+
+		    Console.WriteLine(jsonContent);
+
+                    var response = JsonSerializer.Deserialize<TaxpayersModel>(jsonContent);
 
                     return response;
                 }

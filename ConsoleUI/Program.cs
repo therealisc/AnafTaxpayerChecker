@@ -28,8 +28,6 @@ namespace ConsoleUI
             var taxpayers = await CallApi(_serviceProvider);
 
             DisplayTaxpayers(taxpayers);
-
-            Console.ReadLine();
         }
 
         static async Task<TaxpayersModel> CallApi(IServiceProvider services)
@@ -39,10 +37,12 @@ namespace ConsoleUI
             List<RegistrationNumberModel> registrationNumbers = new List<RegistrationNumberModel>()
             {
                 new RegistrationNumberModel() { RegistrationNumber = 3273781, Date = DateTime.Now.ToString("yyyy-mm-dd") },
-                new RegistrationNumberModel() { RegistrationNumber = 3273781, Date = DateTime.Now.ToString("yyyy-mm-dd") }
+                new RegistrationNumberModel() { RegistrationNumber = 6719278, Date = DateTime.Now.ToString("yyyy-mm-dd") },
             };
 
             var response = await registrationEndpoint.PostRegistrationNumber(registrationNumbers);
+
+	    Console.WriteLine(response.CorrelationId);
 
             ITaxpayersEndpoint taxpayerEndpoint = services.GetRequiredService<ITaxpayersEndpoint>();
             return await taxpayerEndpoint.GetTaxpayer(response.CorrelationId);
@@ -52,10 +52,13 @@ namespace ConsoleUI
         {
             foreach (var taxpayer in taxpayers.Taxpayers)
             {
-                foreach (var property in taxpayer.GetType().GetProperties())
-                {
-                    Console.WriteLine($"{property.Name}: {taxpayer.GetType().GetProperty(property.Name).GetValue(taxpayer, null)}");
-                }
+		var demo = taxpayer.Attribute;
+		Console.WriteLine(demo.Name);
+
+                //foreach (var property in taxpayer.GetType().GetProperties())
+                //{
+                //    Console.WriteLine($"{property.Name}: {taxpayer.GetType().GetProperty(property.Name).GetValue(taxpayer, null)}");
+                //}
 
                 Console.WriteLine();
             }

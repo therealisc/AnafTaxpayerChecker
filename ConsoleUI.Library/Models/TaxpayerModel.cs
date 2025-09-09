@@ -7,6 +7,12 @@ namespace ConsoleUI.Library.Models
 {
     public class TaxpayerModel
     {
+        [JsonPropertyName("date_generale")]
+        public CommonAttribute Attribute { get; set; }
+    }
+
+    public class CommonAttribute
+    {
         [JsonPropertyName("cui")]
         public int RegistrationNumber { get; set; }
 
@@ -24,6 +30,5 @@ namespace ConsoleUI.Library.Models
 
         [JsonPropertyName("codPostal")]
         public string PostalCode { get; set; }
-
     }
 }

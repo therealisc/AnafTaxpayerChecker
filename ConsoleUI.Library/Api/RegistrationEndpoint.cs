@@ -25,13 +25,13 @@ namespace ConsoleUI.Library.Api
 
             stringContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsync("AsynchWebService/api/v6/ws/tva", stringContent))
+            using (HttpResponseMessage responseMessage = await _apiHelper.ApiClient.PostAsync("AsynchWebService/api/v8/ws/tva", stringContent))
             {
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var response = JsonSerializer.Deserialize<SuccessfulResponseModel>(
                         await responseMessage.Content.ReadAsStringAsync());
-
+	    	    
                     return response;
                 }
                 else
