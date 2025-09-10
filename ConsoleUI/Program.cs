@@ -52,8 +52,11 @@ namespace ConsoleUI
         {
             foreach (var taxpayer in taxpayers.Taxpayers)
             {
-		var demo = taxpayer.Attribute;
-		Console.WriteLine(demo.Name);
+		var info = taxpayer.Attribute;
+
+		Console.WriteLine(info.Name);
+		Console.WriteLine(info.Address);
+		Console.WriteLine(info.PhoneNumber);
 
                 //foreach (var property in taxpayer.GetType().GetProperties())
                 //{
