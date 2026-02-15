@@ -10,6 +10,8 @@ namespace ConsoleUI.Library.Api
     public class ApiHelper : IApiHelper
     {
         private HttpClient _apiClient;
+    	//public string WebUrl => "AsynchWebService/api/v8/ws/tva";
+    	public string WebUrl => "/api/PlatitorTvaRest/v9/tva";
 
         public ApiHelper()
         {
@@ -26,7 +28,8 @@ namespace ConsoleUI.Library.Api
 
         private void InitializeClient()
         {
-            string api = ConfigurationManager.AppSettings["ApiAnafTva"];
+            //string api = ConfigurationManager.AppSettings["ApiAnafTva"];
+            string api = "https://webservicesp.anaf.ro/";
 
             _apiClient = new HttpClient
             {

@@ -7,7 +7,7 @@ namespace ConsoleUI.Library.Models
 {
     public class SuccessfulResponseModel
     {
-        [JsonPropertyName("correlationId")]
-        public string CorrelationId { get; set; }
+        [JsonPropertyName("date_generale")]
+        public CommonAttribute Attribute { get; set; }
     }
 }

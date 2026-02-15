@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@using System.Text.Json
+
+<div class="container mt-5">
+    <h2>API Data Fetcher</h2>
+    
+    <form method="post">
+        <div class="mb-3">
+            <label for="numericValue" class="form-label">Enter a Number:</label>
+            <input type="number" class="form-control" asp-for="NumericValue" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Fetch Data</button>
+    </form>
+
+    @if (Model.FoundData != null && Model.FoundData.Any())
+    {
+        <div class="mt-4">
+            <h4>Found @Model.FoundData.Count item(s)</h4>
+            
+            @foreach (var item in Model.FoundData)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                @foreach (var property in item.EnumerateObject())
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><strong>@property.Name:</strong></td>
+                                        <td class="text-break">@property.Value</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else if (Model.FoundData != null)
+    {
+        <div class="alert alert-info mt-4">
+            No items found
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger mt-4">
+            @Model.ErrorMessage
+        </div>
+    }
+</div>
+
+<style>
+    .text-break {
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 600px;
+    }
+    
+    .table-responsive {
+        overflow-x: auto;
+    }
+</style>
