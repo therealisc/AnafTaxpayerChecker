@@ -15,7 +15,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Railway uses the PORT environment variable
-ENV ASPNETCORE_URLS=http://+:${PORT}
+ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
 EXPOSE ${PORT}
 
 ENTRYPOINT ["dotnet", "TaxpayerChecker.dll"]
