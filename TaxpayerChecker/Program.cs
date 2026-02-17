@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.HttpOverrides;
 using ConsoleUI.Library.Api;
 using ConsoleUI.Library.Models;
 
@@ -20,7 +21,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto
+});
+
 app.UseHttpsRedirection();
+app.Use((context, next) =>
+{
+    context.Request.Scheme = "https";
+	return next();
+});
+
 app.UseStaticFiles();
 
 app.UseRouting();
