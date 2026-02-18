@@ -33,22 +33,22 @@
 			@foreach (var item in Model.FoundData)
 			{
 					<div style="background: #f9f9f9; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); margin-bottom: 16px; overflow: hidden;">
-							<div style="padding: 20px;">
+						<div style="padding: 20px;">
 							<table style="width: 100%; border-collapse: collapse; font-size: 14px;">
 							@foreach (var property in item.EnumerateObject())
 							{
 									<tr style="border-bottom: 1px solid #ebebeb;">
-											<td style="padding: 8px 12px 8px 0; color: #6b7280; font-weight: 600; white-space: nowrap; vertical-align: top;">
+										<td style="padding: 8px 12px 8px 0; color: #6b7280; font-weight: 600; white-space: nowrap; vertical-align: top; width: 35%;">
 											@property.Name
-											</td>
-											<td style="padding: 8px 0; color: #1e1b4b; word-break: break-word;">
+										</td>
+										<td style="padding: 8px 0; color: #1e1b4b; word-break: break-word; width: 65%;">
 											@property.Value
-											</td>
-											</tr>
+										</td>
+									</tr>
 							}
-					</table>
-							</div>
-							</div>
+							</table>
+						</div>
+					</div>
 			}
 		</div>
     }
