@@ -1,4 +1,4 @@
-﻿namespace ConsoleUI.Library.Models
+namespace TaxpayerChecker.Models
 {
     public interface IRegistrationNumberModel
     {

@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.HttpOverrides;
-using ConsoleUI.Library.Api;
-using ConsoleUI.Library.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
-builder.Services.AddSingleton<IApiHelper, ApiHelper>();
-builder.Services.AddSingleton<IRegistrationEndpoint, RegistrationEndpoint>();
-builder.Services.AddTransient<IRegistrationNumberModel, RegistrationNumberModel>();
 
 var app = builder.Build();
 
