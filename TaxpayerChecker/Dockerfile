@@ -1,21 +1,19 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
+WORKDIR /app
 
-# Copy csproj and restore
-COPY *.csproj ./
-RUN dotnet restore
+# Copy the entire solution (all projects)
+COPY . .
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o /app/publish
+# Restore and publish the UI project
+RUN dotnet restore "TaxpayerChecker/TaxpayerChecker.csproj"
+RUN dotnet publish "TaxpayerChecker/TaxpayerChecker.csproj" -c Release -o /out
 
 # Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build /out .
 
-# Railway uses the PORT environment variable
-ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
-EXPOSE ${PORT}
+EXPOSE 10000
+ENV ASPNETCORE_URLS=http://+:10000
 
 ENTRYPOINT ["dotnet", "TaxpayerChecker.dll"]
