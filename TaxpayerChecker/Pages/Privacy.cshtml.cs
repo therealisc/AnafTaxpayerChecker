@@ -21,23 +21,14 @@ public class PrivacyModel : PageModel
 
     public async void OnGet()
     {
-        string host = "https://us-east-1-1.aws.cloud2.influxdata.com";
-        
-        string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
-        
-        string database = "<intercom_data>";
+            string Token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
 
-        
-        string bucket = "intercom_data";
-        string org = "xtermost";
-        string password = "";
+            using var client = new InfluxDBClient("https://us-east-1-1.aws.cloud2.influxdata.com", Token);
 
-        using var client = new InfluxDBClient(host, token, database: database, password: password);
-        var writeApi = client.GetWriteApiAsync();
-        
-        var lineProtocol = "temperature,location=warehouse value=18.2";
-        await writeApi.WriteRecordAsync(lineProtocol, WritePrecision.Ns, bucket, org);
-
+            using (var writeApi = client.GetWriteApi())
+            {
+                writeApi.WriteRecord("temperature,location=north value=60.0", WritePrecision.Ns, "intercom_data", "06c2e6f9e7b1be47");
+            }
         Console.WriteLine("Complete. Return to the InfluxDB UI.");
     }
 }
