@@ -24,7 +24,7 @@ public class PrivacyModel : PageModel
         string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
         string database = "<intercom_data>";
 
-        using var client = new InfluxDBClient(host, token, database);
+        using var client = new InfluxDBClient(host, token, database: database);
 
         const string record = "temperature,location=north value=60.0";
         
