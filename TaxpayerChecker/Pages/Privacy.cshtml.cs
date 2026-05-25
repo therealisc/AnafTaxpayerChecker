@@ -19,7 +19,7 @@ public class PrivacyModel : PageModel
         _logger = logger;
     }
 
-    public async void OnGet()
+    public void OnGet()
     {
         string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
 
