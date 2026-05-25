@@ -14,6 +14,9 @@ public class PrivacyModel : PageModel
 
     public void OnGet()
     {
+        var hostUrl = "https://eu-central-1-1.aws.cloud2.influxdata.com";
+        var authToken = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
+            
+        using var client = new InfluxDBClient(hostUrl, token: authToken);
     }
 }
-
