@@ -7,7 +7,7 @@
   </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="InfluxDB.Client" />
+        <PackageReference Include="InfluxDB3.Client" />
     </ItemGroup>
 
 </Project>
