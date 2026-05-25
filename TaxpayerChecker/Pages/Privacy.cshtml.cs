@@ -19,13 +19,20 @@ public class PrivacyModel : PageModel
 
     public async void OnGet()
     {
-        string host = "https://us-east-1-1.aws.cloud2.influxdata.com";
-        string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
-        string database = "<intercom_data>";
-
-        using var client = new InfluxDBClient(host, token, database);
+        using var client = new InfluxDBClient(new ClientConfig
+        {
+            Host = "https://us-east-1-1.aws.cloud2.influxdata.com",
+            Token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN"),
+            Database = "intercom_data",
+            
+            QueryOptions = new QueryOptions
+            {
+                DisableGrpcCompression = true
+            }
+        });
 
         const string record = "temperature,location=north value=60.0";
+        
         await client.WriteRecordAsync(record: record);
 
         Console.WriteLine("Complete. Return to the InfluxDB UI.");
