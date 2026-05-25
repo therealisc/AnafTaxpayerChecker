@@ -30,8 +30,9 @@ public class PrivacyModel : PageModel
         
         string bucket = "intercom_data";
         string org = "xtermost";
+        string password = "";
 
-        using var client = new InfluxDBClient(host, token, database: database);
+        using var client = new InfluxDBClient(host, token, database: database, password: password);
         var writeApi = client.GetWriteApiAsync();
         
         var lineProtocol = "temperature,location=warehouse value=18.2";
