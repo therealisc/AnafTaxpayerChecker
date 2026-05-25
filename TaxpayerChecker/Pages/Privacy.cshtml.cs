@@ -21,7 +21,8 @@ public class PrivacyModel : PageModel
     {
         string host = "https://us-east-1-1.aws.cloud2.influxdata.com";
         
-        string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
+        //string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
+        string token = "_f7q25u8qRxg4O8bVGg8cZFR2uOtV07Z_0doZO82jeCQfX0o0fbRdSe8Ft7Mln2TZvcDFLlqh94vVK-3gE8Qxw=="
         string database = "<intercom_data>";
 
         using var client = new InfluxDBClient(host, token, database: database);
