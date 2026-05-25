@@ -26,9 +26,6 @@ public class PrivacyModel : PageModel
         using var client = new InfluxDBClient("https://us-east-1-1.aws.cloud2.influxdata.com", token);
         using (var writeApi = client.GetWriteApi())
         {
-            writeApi.WriteRecord("temperature,location=north value=60.0", WritePrecision.Ns, "intercom_data", "06c2e6f9e7b1be47");
-            writeApi.WriteRecord("temperature,location=north value=20.0", WritePrecision.Ns, "intercom_data", "06c2e6f9e7b1be47");
-            writeApi.WriteRecord("temperature,location=south value=33.0", WritePrecision.Ns, "intercom_data", "06c2e6f9e7b1be47");
             writeApi.WriteRecord("temperature,location=north value=33.0", WritePrecision.Ns, "intercom_data", "06c2e6f9e7b1be47");
         }
         
