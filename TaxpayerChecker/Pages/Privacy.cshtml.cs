@@ -17,13 +17,13 @@ public class PrivacyModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public async void OnGet()
     {
-        var hostUrl = "https://eu-central-1-1.aws.cloud2.influxdata.com";        
-        var authToken = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
-        const string database = "<intercom_data>";
-        
-        using var client = new InfluxDBClient(hostUrl, token: authToken, database: database);
+        const string host = "https://us-east-1-1.aws.cloud2.influxdata.com";
+        const string token = Environment.GetEnvironmentVariable("INFLUXDB_TOKEN");
+        const string database = "intercom_data";
+
+        using var client = new InfluxDBClient(host, token: token, database: database);
 
         const string record = "temperature,location=north value=60.0";
         await client.WriteRecordAsync(record: record);
